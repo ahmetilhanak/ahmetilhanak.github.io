@@ -13,7 +13,7 @@ import { Loader } from '../libs/three.js-r132/build/three.module.js';
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  mockWithImage("./AssemblyParts/Assembly/Assembly1.JPG");
+ // mockWithImage("./AssemblyParts/Assembly/Assembly1.JPG");
 
   const start = async () => {
     const mindarThree = new MindARThree({                  
