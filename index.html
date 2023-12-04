@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="./style/iframeSlider.css">
+  
+  <link rel="stylesheet" href="./fontello-c7997974/css/animation.css">
+
+  <link rel="stylesheet" href="./style/buttonsStyle.css">
+
+  <script async src="https://unpkg.com/es-module-shims@1.7.3/dist/es-module-shims.js">
+    // This is added to make it work in all browsers
+  </script>
+
+
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.132.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.132.0/examples/jsm/",
+      "gltfloader": "https://unpkg.com/three@0.132.0/examples/jsm/loaders/GLTFLoader.js",
+      "mindar-image-three":"https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-three.prod.js",
+      "loadgltf":"./libs/loader.js",
+      "createchromamaterial": "./libs/chroma-video.js",
+      "css3dobject" : "./libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js"     
+    }
+  }
+</script>
+  <script src="./scripts/main.js" type="module"></script>
+
+  <style>
+    html,
+    body {
+      position: relative;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      /* height: 100vh; */
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #firstDiv {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
+    }
+
+    #firstDiv.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #thirdDiv {
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
+      height: 100px;
+      border-style: dashed;
+      width: 800px;
+    }
+
+    #thirdDiv.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #ar-div {
+      visibility: hidden;
+    }
+
+    #my-ar-container {
+      height: 1000px;
+      width: 1000px;
+      position: relative;
+      overflow: hidden;
+      margin-left: 30px;
+    }
+  </style>
+
+  <title>AR HW</title>
+</head>
+
+<body>
+
+  <div class="container" id="ar-div">
+    <div id="firstDiv" class="div_group">
+
+      <div>
+        <div class="slideshow-container">
+
+          <div class="mySlides fade" >
+            <div class="numbertext">1 / 8</div>
+            <img src="./AssemblyParts/BackOfHousingCap/BackOfHousingCap.JPG" width="640" height="360">
+            <div class="text" style="color: black;">1 - BackOfHousingCap</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">2 / 8</div>
+            <img src="./AssemblyParts/ExchangerHousing/ExchangerHousing.JPG" width="640" height="360">
+            <div class="text" style="color: black;">2 - ExchangerHousing</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">3 / 8</div>
+            <img src="./AssemblyParts/FinOfInnerExchanger/FinOfInnerExchanger.JPG" width="640" height="360">
+            <div class="text" style="color: black;">3 - FinOfInnerExchanger</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">4 / 8</div>
+            <img src="./AssemblyParts/FluidEntryCapOfHousing/FluidEntryCapOfHousing.JPG" width="640" height="360">
+            <div class="text" style="color: black;">4 - FluidEntryCapOfHousing</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">5 / 8</div>
+            <img src="./AssemblyParts/Gasket/Gasket.JPG" width="640" height="360">
+            <div class="text" style="color: black;">5 - Gasket1</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">6 / 8</div>
+            <img src="./AssemblyParts/Gasket2/Gasket2.JPG" width="640" height="360">
+            <div class="text" style="color: black;">6 - Gasket2</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">7 / 8</div>
+            <img src="./AssemblyParts/Inner Exchanger/InnerExchanger.JPG" width="640" height="360">
+            <div class="text" style="color: black;">7 - InnerExchanger</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">8 / 8</div>
+            <img src="./AssemblyParts/Assembly/Assembly.JPG" width="640" height="360">
+            <div class="text" style="color: black;">8 - Assembly</div>
+          </div>
+
+
+          <a class="prev" style="color: red;" onclick="plusSlides(-1)">❮</a>
+          <a class="next" style="color: red;" onclick="plusSlides(1)">❯</a>
+
+        </div>
+        <br>
+
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
+          <span class="dot" onclick="currentSlide(5)"></span>
+          <span class="dot" onclick="currentSlide(6)"></span>
+          <span class="dot" onclick="currentSlide(7)"></span>
+          <span class="dot" onclick="currentSlide(8)"></span>
+        </div>
+
+        <script src="./scripts/iframe.js"></script>
+      </div>
+
+    </div>
+    <div class="visible" id="secondDiv">
+
+      <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/s9ouQ_-WaiI?si=g4-DzlY0ESNbaeth"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe> -->
+      <video width="640" height="360" controls>
+        <source src="./AssemblyParts/Assembly/AssemblyExplode.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+    </div>
+    <div id="thirdDiv">
+
+      <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/s9ouQ_-WaiI?si=g4-DzlY0ESNbaeth" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+      <nav>
+        <ul class="nav">
+
+          <li><a href="#" class="playButton" id="button-left"><span class="icon-left-dir"></span></a></li>
+          <li><a href="#" class="playButton" id="button-right"><span class="icon-right-dir"></span></a></li>
+          <li><a href="#" class="playButton" id="button-up"><span class="icon-up-dir"></span></a></li>
+          <li><a href="#" class="playButton" id="button-down"><span class="icon-down-dir"></span></a></li>
+          <li><a href="#" class="playButton" id="button-rotate"><span class="icon-cw"></span></a></li>
+        </ul>
+      </nav>
+
+    </div>
+    <script>
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   document.getElementById("firstDiv").classList.add("visible");
+      //   document.getElementById("thirdDiv").classList.add("visible");
+      // });
+
+      // document.getElementsByClassName(".container");
+      // document.addEventListener("DOMContentLoaded", () =>{});
+    </script>
+  </div>
+
+  <script>
+    // Use JavaScript to toggle the "visible" class when needed
+    // For example, after a button click or a certain event
+
+
+    // setTimeout(function() {
+    //   document.querySelectorAll('.container div').forEach(function(div) {
+    //     div.classList.add('visible');
+    //   });
+    // }, 2500); // Set a delay for demonstration purposes
+
+
+
+  </script>
+
+</body>
+
+</html>
